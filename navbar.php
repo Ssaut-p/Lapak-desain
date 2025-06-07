@@ -52,7 +52,7 @@ if ($notif_result && $row = $notif_result->fetch_assoc()) {
         <img src="Images/logo-transparent.png" alt="logo" width="50" height="38" />
         <span class="ms-2 fw-bold">LapakDesain</span>
       </a>
-      <form action="search.php" method="GET" class="search-container d-none d-lg-flex">
+      <form action="shop.php" method="GET" class="search-container d-none d-lg-flex">
         <input type="text" name="query" class="form-control" placeholder="What service are you looking for today?" required />
         <button class="btn btn-dark ms-2" type="submit">Cari</button>
       </form>

@@ -27,16 +27,17 @@ $designer_id = $project['user_id'];
 $price = $project['price'];
 
 // Cek apakah sudah ada order sebelumnya
-$check = $conn->prepare("SELECT id FROM orders WHERE buyer_id = ? AND project_id = ?");
+$check = $conn->prepare("SELECT id FROM orders WHERE buyer_id = ? AND project_id = ? AND status != 'Selesai'");
 $check->bind_param("ii", $user_id, $project_id);
 $check->execute();
 $check->store_result();
 
 if ($check->num_rows > 0) {
-    $_SESSION['error'] = "Anda sudah memesan project ini.";
+    $_SESSION['error'] = "Anda sudah memiliki pesanan aktif untuk project ini.";
     header("Location: pesanan.php");
     exit();
 }
+
 
 // Simpan ke tabel orders
 $stmt = $conn->prepare("INSERT INTO orders (buyer_id, designer_id, project_id, status, created_at, status_pembayaran) VALUES (?, ?, ?, 'Menunggu Konfirmasi', NOW(), 'Belum Dibayar')");

@@ -406,3 +406,17 @@ body {
   margin: 0;
 }
 /* Section 3 End */
+
+footer a {
+  color: #333;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+footer a.text-muted:hover {
+  color: #000;
+  text-decoration: underline;
+}

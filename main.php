@@ -94,6 +94,85 @@ $name = $user['name'];
     </div>
   </section>
 
+
+  <!-- Footer -->
+<!-- Footer -->
+<footer class="bg-light mt-5 pt-5 border-top">
+  <div class="container pb-5">
+    <div class="row row-cols-2 row-cols-md-5 g-4">
+
+      <div class="col">
+        <h6 class="fw-bold mb-3">Categories</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none text-muted">Graphics & Design</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Digital Marketing</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Writing & Translation</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Video & Animation</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Music & Audio</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Programming & Tech</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">AI Services</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Consulting</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Finance</a></li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <h6 class="fw-bold mb-3">For Clients</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none text-muted">How It Works</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Customer Stories</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Trust & Safety</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Online Courses</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">User Guides</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">FAQ</a></li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <h6 class="fw-bold mb-3">For Freelancers</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none text-muted">Become a Freelancer</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Start an Agency</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Community Hub</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Forum</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Events</a></li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <h6 class="fw-bold mb-3">Business Solutions</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none text-muted">Fiverr Pro</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Project Management</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Expert Sourcing</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Content Marketing</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Creative Talent</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Contact Sales</a></li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <h6 class="fw-bold mb-3">Company</h6>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-decoration-none text-muted">About Us</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Help & Support</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Careers</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Terms of Service</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Privacy Policy</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Affiliates</a></li>
+          <li><a href="#" class="text-decoration-none text-muted">Press & News</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-5 small text-muted">
+      &copy; <?= date('Y') ?> LapakDesain. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+
   <!-- Scripts -->
   <script src="js/main.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>

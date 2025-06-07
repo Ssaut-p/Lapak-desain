@@ -124,7 +124,7 @@ $designer_orders = $stmt_designer->get_result();
 
             <?php if ($row['status'] === 'Selesai' && !$review_exists): ?>
                 <div class="review-box">
-                    <form method="POST" action="tambah_ulasan.php">
+                    <form method="POST" action="proses_ulasan.php">
                         <input type="hidden" name="project_id" value="<?= $row['project_id'] ?>">
                         <input type="hidden" name="order_id" value="<?= $row['id'] ?>">
 
@@ -157,45 +157,55 @@ $designer_orders = $stmt_designer->get_result();
         </div>
     <?php endwhile; ?>
 
-    <!-- DESAINER -->
-    <h4 class="mt-5 mb-3">🎨 Pesanan Masuk</h4>
-    <?php if ($designer_orders->num_rows === 0): ?>
-        <div class="alert alert-info">Belum ada pesanan masuk.</div>
-    <?php endif; ?>
+<!-- DESAINER -->
+<h4 class="mt-5 mb-3">🎨 Pesanan Masuk</h4>
+<?php if ($designer_orders->num_rows === 0): ?>
+    <div class="alert alert-info">Belum ada pesanan masuk.</div>
+<?php endif; ?>
 
-    <?php while ($row = $designer_orders->fetch_assoc()): ?>
-        <div class="order-card">
-            <h5 class="fw-semibold"><?= htmlspecialchars($row['title']) ?></h5>
-            <p class="mb-1">Pembeli: <strong><?= htmlspecialchars($row['buyer_name']) ?></strong></p>
-            <p>Status:
-                <span class="badge bg-<?= $row['status'] === 'Menunggu Konfirmasi' ? 'warning' : ($row['status'] === 'Proses Desain' ? 'primary' : 'success') ?> status-badge">
-                    <?= htmlspecialchars($row['status']) ?>
-                </span>
+<?php while ($row = $designer_orders->fetch_assoc()): ?>
+    <div class="order-card">
+        <h5 class="fw-semibold"><?= htmlspecialchars($row['title']) ?></h5>
+        <p class="mb-1">Pembeli: <strong><?= htmlspecialchars($row['buyer_name']) ?></strong></p>
+        <p>Status:
+            <span class="badge bg-<?= $row['status'] === 'Menunggu Konfirmasi' ? 'warning' : ($row['status'] === 'Proses Desain' ? 'primary' : 'success') ?> status-badge">
+                <?= htmlspecialchars($row['status']) ?>
+            </span>
+        </p>
+
+        <p>Pembayaran: <strong><?= $row['status_pembayaran'] === 'Lunas' ? '✅ Lunas' : '❌ Belum Dibayar' ?></strong></p>
+
+
+        <?php if ($row['status_pembayaran'] === 'Lunas' && !empty($row['payment_proof'])): ?>
+            <p>Bukti Transfer:
+                <a href="uploads_bukti/<?= htmlspecialchars($row['payment_proof']) ?>" target="_blank" class="btn btn-outline-success btn-sm">
+                    🔍 Lihat Bukti
+                </a>
             </p>
+        <?php endif; ?>
 
-            <p>Pembayaran: <strong><?= $row['status_pembayaran'] === 'Lunas' ? '✅ Lunas' : '❌ Belum Dibayar' ?></strong></p>
+        <?php if ($row['status'] === 'Menunggu Konfirmasi' && $row['status_pembayaran'] === 'Lunas'): ?>
+            <form method="POST" action="konfirmasi_pesanan.php" class="mt-2">
+                <input type="hidden" name="order_id" value="<?= $row['id'] ?>">
+                <button type="submit" class="btn btn-outline-primary btn-action">✅ Konfirmasi & Mulai Desain</button>
+            </form>
+        <?php elseif ($row['status_pembayaran'] === 'Belum Dibayar'): ?>
+            <div class="text-danger">⏳ Menunggu pembayaran dari pembeli</div>
+        <?php endif; ?>
 
-            <?php if ($row['status'] === 'Menunggu Konfirmasi' && $row['status_pembayaran'] === 'Lunas'): ?>
-                <form method="POST" action="konfirmasi_pesanan.php" class="mt-2">
-                    <input type="hidden" name="order_id" value="<?= $row['id'] ?>">
-                    <button type="submit" class="btn btn-outline-primary btn-action">✅ Konfirmasi & Mulai Desain</button>
-                </form>
-            <?php elseif ($row['status_pembayaran'] === 'Belum Dibayar'): ?>
-                <div class="text-danger">⏳ Menunggu pembayaran dari pembeli</div>
-            <?php endif; ?>
+        <?php if ($row['status'] === 'Proses Desain'): ?>
+            <form method="POST" action="upload_hasil.php" enctype="multipart/form-data" class="mt-3">
+                <input type="hidden" name="order_id" value="<?= $row['id'] ?>">
+                <div class="mb-2">
+                    <label for="final_file_<?= $row['id'] ?>" class="form-label">📤 Upload Hasil Desain</label>
+                    <input type="file" name="final_file" id="final_file_<?= $row['id'] ?>" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-success btn-action">🚀 Kirim ke Pembeli</button>
+            </form>
+        <?php endif; ?>
+    </div>
+<?php endwhile; ?>
 
-            <?php if ($row['status'] === 'Proses Desain'): ?>
-                <form method="POST" action="upload_hasil.php" enctype="multipart/form-data" class="mt-3">
-                    <input type="hidden" name="order_id" value="<?= $row['id'] ?>">
-                    <div class="mb-2">
-                        <label for="final_file_<?= $row['id'] ?>" class="form-label">📤 Upload Hasil Desain</label>
-                        <input type="file" name="final_file" id="final_file_<?= $row['id'] ?>" class="form-control" required>
-                    </div>
-                    <button type="submit" class="btn btn-success btn-action">🚀 Kirim ke Pembeli</button>
-                </form>
-            <?php endif; ?>
-        </div>
-    <?php endwhile; ?>
 </div>
 
 <!-- Scripts -->
